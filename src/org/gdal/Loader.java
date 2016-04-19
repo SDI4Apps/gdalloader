@@ -11,7 +11,7 @@ import org.gdal.ogr.ogr;
 /**
  * This class must be placed in the common class loader location of the
  * application server. In the event of Glassfish this is domain/lib/ext; for
- * Tomcat it must be detemrined but is likely to be tomcat/lib
+ * Tomcat it must be determined but is likely to be tomcat/lib
  *
  * This class loads the GDAL libraries one time only for the life-time of the
  * server
@@ -25,17 +25,17 @@ import org.gdal.ogr.ogr;
  * This generic loader class can in principle be re-used independent of
  * applications.
  *
- * @author runarbe
  */
 public class Loader {
-
     static {
         try {
+            gdal.AllRegister();
             ogr.RegisterAll();
-            System.out.println("Loaded GDAL libraries");
+            System.out.println("Loaded and registerred all GDAL/OGR drivers");
         } catch (Exception e) {
-            System.out.println("Error registering Ogr dependencies: " + e.toString());
+            System.out.println("Error registering GDAL/OGR dependencies: " + e.toString());
         }
     }
+}
 
 }
